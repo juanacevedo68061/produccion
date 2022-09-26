@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+Detalle del Proyecto
+{% endblock %}
+{% block content %}
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">{{detalle.nombre}}</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">Scrum Master {{detalle.scrum}}</p>
+        </div>
+        <a href="{% url 'eliminar' proyecto_id=detalle.id %}" class="btn btn-primary btn-lg px-4 gap-3" role="button" aria-disabled="true">Eliminar</a>
+        <a href="{% url 'proyectos' %}" class="btn btn-primary btn-lg px-4 gap-3" role="button" aria-disabled="true">Volver</a>
+    </div>
+{% endblock %}

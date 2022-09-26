@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+Proyectos
+{% endblock %}
+{% block content %}
+<title>Usuarios</title>
+<body>
+    {% for usuario in usuarios %}
+    <div class="container">      
+        <div class="col-md-6 offset-md-3">
+            <div class="card card-body text-black mt-2 d-flex flex-row justify-content-between">
+                <h4>{{usuario.email}}</h4> 
+                    <div class="btn-group">
+                        <form action="{% url 'eliminacion' usuario.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger">Eliminar</button>
+                        </form>
+                        <form action="{% url 'agregar' usuario.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div> 
+            </div>
+        </div>
+    </div>    
+    {% empty %}
+    <div class="px-4 py-5 my-5 text-center">
+        <h1>No se encuentran usuarios</h1>
+    </div>
+    {% endfor %}
+</body>
+{% endblock %}

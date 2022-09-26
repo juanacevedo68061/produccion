@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+
+  db:
+    container_name: cont_post
+    image: postgres
+    env_file: 
+      - .env
+    volumes:
+      - ./sql/base1.sql:/docker-entrypoint-initdb.d/sql
+      - pgdata:/var/lib/postgresql/data/
+    restart: always
+    ports:
+      - "5432:5432"
+
+  web:
+    volumes:
+      - static:/static
+    env_file:
+      - .env
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+volumes:
+
+  static:
+  pgdata:

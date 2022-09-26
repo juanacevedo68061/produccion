@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+Proyectos
+{% endblock %}
+{% block content %}
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+        {% for proyecto in Proyectos %}
+        <div class="col-md-4">
+            <a class="text-dark" href="{% url 'detalle' pk=proyecto.id %}" >
+
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <h2 style="font-size:18px;font-weight:bold">{{proyecto.nombre}}</h2>
+            </a>
+                <p class="card-text">{{proyecto.scrum}}</p>
+              </div>
+            </div>
+        </div>
+        {% empty %} 
+          <div class="px-4 py-5 my-5 text-center">
+            <h1>No se crearon proyectos aún</h1>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="px-4 py-5 my-5 text-center">
+      <a href="{% url 'nuevo' %}" class="btn btn-primary btn-lg px-4 gap-3" role="button" aria-disabled="true">Nuevo Proyecto</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
