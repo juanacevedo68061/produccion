@@ -162,4 +162,4 @@ LOGOUT_REDIRECT_URL = '/'
 STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 
-#CSRF_TRUSTED_ORIGINS = ['localhost:80', 'localhost:8000'] 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8080","http://localhost:8000","http://localhost:80"]
